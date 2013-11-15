@@ -68,6 +68,18 @@ class Encrypted extends AbstractField
 	}
 
 	/**
+	 * Process before saving
+	 * @return string
+	 */
+	public function preSave()
+	{
+		// Encrypt the value if any
+		if ($this->value) {
+			return ci()->encrypt->encode($this->value);
+		}
+	}
+
+	/**
 	 * Pre Ouput
 	 *
 	 * Process before outputting on the CP. Since
