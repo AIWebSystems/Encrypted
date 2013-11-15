@@ -53,7 +53,7 @@ class Encrypted extends AbstractField
 	 */
 	public function formInput()
 	{
-		return form_input($this->form_slug, $this->value);
+		return form_input($this->form_slug, $this->value, 'class="form-control"');
 	}
 
 	/**
