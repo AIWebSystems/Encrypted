@@ -21,7 +21,6 @@ class Encrypted extends AbstractFieldType
 	 */
 	public $custom_parameters = array(
 		'hide_typing',
-		'mode',
 		);
 	
 	/**
@@ -64,7 +63,7 @@ class Encrypted extends AbstractFieldType
 	 */
 	public function filterInput()
 	{
-		return form_input($this->getFilterSlug('contains'), ci()->input->get($this->getFilterSlug('contains')));
+		return form_input($this->getFilterSlug('contains'), ci()->input->get($this->getFilterSlug('contains')), 'class="form-control"');
 	}
 
 	/**
