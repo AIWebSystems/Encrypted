@@ -52,7 +52,7 @@ class Encrypted extends AbstractFieldType
 	 */
 	public function formInput()
 	{
-		return form_input($this->form_slug, $this->value, 'class="form-control"');
+		return form_input($this->form_slug, '********', 'class="form-control"');
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Encrypted extends AbstractFieldType
 	 */
 	public function filterInput()
 	{
-		return form_input($this->getFilterSlug('contains'), ci()->input->get($this->getFilterSlug('contains')), 'class="form-control"');
+		return 'No filter available';
 	}
 
 	/**
@@ -72,10 +72,12 @@ class Encrypted extends AbstractFieldType
 	 */
 	public function preSave()
 	{
-		// Encrypt the value if any
-		if ($this->value) {
+		// Encrypt the value if any and not our placeholder
+		if ($this->value and $this->value != '********') {
 			return ci()->encrypt->encode($this->value);
 		}
+
+		return null;
 	}
 
 	/**
@@ -90,7 +92,7 @@ class Encrypted extends AbstractFieldType
 	 */
 	public function stringOutput()
 	{
-		return $this->value;
+		return '********';
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -104,4 +106,16 @@ class Encrypted extends AbstractFieldType
 	///////////////////////////////////////////////////////////////////////////////
 	// -------------------------	UTILITIES 	  ------------------------------ //
 	///////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Return the decoded output
+	 * @return string
+	 */
+	public function decodedOutput()
+	{
+		if ($this->value)
+			return ci()->encrypt->decode($this->value);
+		else
+			return null;
+	}
 }
