@@ -52,7 +52,7 @@ class Encrypted extends AbstractFieldType
 	 */
 	public function formInput()
 	{
-		return form_input($this->form_slug, '********', 'class="form-control"');
+		return form_input($this->form_slug, $this->value, 'class="form-control" placeholder="'.$this->getParameter('placeholder', '****************').'"');
 	}
 
 	/**
@@ -73,7 +73,7 @@ class Encrypted extends AbstractFieldType
 	public function preSave()
 	{
 		// Encrypt the value if any and not our placeholder
-		if ($this->value and $this->value != '********') {
+		if ($this->value) {
 			return ci()->encrypt->encode($this->value);
 		}
 
