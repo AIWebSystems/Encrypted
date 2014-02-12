@@ -1,13 +1,13 @@
 <?php namespace Pyro\FieldType;
 
-use Pyro\Module\Streams_core\AbstractFieldType;
+use Pyro\Module\Streams\FieldType\FieldTypeAbstract;
 
 /**
  * Streams Encrypted Field Type
  *
  * @package        PyroCMS\Addons\Shared Addons\Field Types
  */
-class Encrypted extends AbstractFieldType
+class Encrypted extends FieldTypeAbstract
 {
     public $field_type_slug = 'encrypted';
 
